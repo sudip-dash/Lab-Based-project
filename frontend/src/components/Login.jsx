@@ -4,6 +4,7 @@ import axios from "axios";
 const Login = () => {
   const [formData, setFormData] = useState({ email: "", password: "" });
   const navigate = useNavigate();
+  const [errorMessage, setErrorMessage] = useState(""); // Store error message
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -13,20 +14,28 @@ const Login = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post("http://localhost:8000/user/login", {
-        email:formData.email,
-        password:formData.password
-      },{withCredentials:true});
+      const response = await axios.post(
+        "http://localhost:8000/user/login",
+        {
+          email: formData.email,
+          password: formData.password,
+        },
+        { withCredentials: true }
+      );
 
-      
-      if (response.status == 200) {
-        localStorage.setItem("accessToken", response.accessToken);
+      if (response.status === 200) {
+        localStorage.setItem("accessToken", response.data.accessToken);
         navigate("/home");
       } else {
-        alert(response.message);
+        alert(response.data.message); // Access message properly
       }
     } catch (error) {
       console.error("Login failed", error);
+      setErrorMessage(
+        `Login failed: May be either password or email is wrong [ ${
+          error.response?.data?.message || error.message
+        }]`
+      );
     }
   };
 
@@ -49,10 +58,29 @@ const Login = () => {
           className="border-black p-2 m-2 rounded-lg"
           required
         />
-        <button className="border-black p-2 m-2 bg-blue-600 rounded-2xl text-white" type="submit">Login</button>
+        <button
+          className="border-black p-2 m-2 bg-blue-600 rounded-2xl text-white"
+          type="submit"
+        >
+          Login
+        </button>
       </form>
-      <Link to="/" className="text-blue-500 hover:text-amber-800 active:text-red-600">Don't have an account ? Signup</Link>
-      <Link to="/forgot-password" className="text-blue-500 hover:text-amber-800 active:text-red-600">Don't have an account ? Signup</Link>
+      <Link
+        to="/"
+        className="text-blue-500 hover:text-amber-800 active:text-red-600"
+      >
+        Don't have an account ? Signup
+      </Link>
+
+      {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
+
+      <br />
+      <Link
+        to="/forgot-password"
+        className="text-blue-500 hover:text-amber-800 active:text-red-600"
+      >
+        Don't remember your password ? Reset
+      </Link>
     </>
   );
 };

@@ -24,6 +24,12 @@ const loginSchema = new Schema(
     refreshToken: {
       type: String,
     },
+    resetPasswordToken: {
+      type: String,
+    },
+    resetPasswordTokenExpires: {
+      type: Date,
+    }
   },
   { timestamps: true }
 );

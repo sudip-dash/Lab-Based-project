@@ -26,7 +26,7 @@ const Signup = () => {
       if (response.data.message === "user do exist") {
         setErrorMessage("User already exists. Please log in.");
       } else {
-        navigate("/home");
+        navigate("/login");
       }
     } catch (error) {
       console.error("Signup failed", error);
