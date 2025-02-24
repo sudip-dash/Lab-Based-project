@@ -6,7 +6,7 @@ import FileUploader from "./FileUploader.jsx";
 function Home() {
   return (
     <div>
-      <h1>Hello</h1>
+      <h1>Enter pdf file Only </h1>
       <FileUploader/>
       <Logout/>
     </div>

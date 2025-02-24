@@ -1,28 +1,14 @@
 import fs from "fs";
 import path from "path";
 import { PDFDocument } from "pdf-lib";
-import libre from "libreoffice-convert";
-import util from "util";
 
-
-const convertAsync = util.promisify(libre.convert);
-
-// Function to convert DOCX to PDF
-const convertDocxToPdf = async (inputPath, outputPath) => {
-  const docxBuffer = fs.readFileSync(inputPath);
-  const pdfBuffer = await convertAsync(docxBuffer, ".pdf", undefined);
-  fs.writeFileSync(outputPath, pdfBuffer);
-};
-
-// Function to convert image (PNG/JPG) to PDF
+// Function to convert JPG/JPEG to PDF
 const convertImageToPdf = async (inputPath, outputPath) => {
   const pdfDoc = await PDFDocument.create();
   const imageBytes = fs.readFileSync(inputPath);
   let image;
 
-  if (inputPath.endsWith(".png")) {
-    image = await pdfDoc.embedPng(imageBytes);
-  } else if (inputPath.endsWith(".jpg") || inputPath.endsWith(".jpeg")) {
+  if (inputPath.endsWith(".jpg") || inputPath.endsWith(".jpeg")) {
     image = await pdfDoc.embedJpg(imageBytes);
   }
 
@@ -44,10 +30,7 @@ export const uploadFile = async (req, res) => {
   try {
     if (ext === ".pdf") {
       res.json({ message: "PDF uploaded successfully", path: inputPath });
-    } else if (ext === ".docx") {
-      await convertDocxToPdf(inputPath, outputPath);
-      res.json({ message: "DOCX converted to PDF", path: outputPath });
-    } else if (ext === ".png" || ext === ".jpg" || ext === ".jpeg") {
+    } else if (ext === ".jpg" || ext === ".jpeg") {
       await convertImageToPdf(inputPath, outputPath);
       res.json({ message: "Image converted to PDF", path: outputPath });
     } else {
