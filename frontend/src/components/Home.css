@@ -1,0 +1,221 @@
+/* Global Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Prevent Horizontal Scrolling */
+html, body {
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+    scroll-behavior: smooth; /* Ensures smooth scrolling */
+}
+
+/* Ensure Root Div Covers Full Width */
+#root {
+    width: 100vw;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+/* Navbar Styling */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 30px;
+    background-color: #007bff;
+    border-radius: 0 0 10px 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+}
+
+.nav-left {
+    display: flex;
+    gap: 30px;
+}
+
+.nav-right {
+    display: flex;
+}
+
+.navbar button {
+    padding: 12px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    background: white;
+    color: #007bff;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+.navbar button:hover {
+    background: #0056b3;
+    color: white;
+}
+
+/* Sections Full Screen */
+.section {
+    width: 100vw;
+    min-height: 60vh;
+    padding-top: 80px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(120deg, #e6f7ff, #d9edf7);
+}
+
+.section-header {
+    text-align: center;
+    font-size: 2rem; 
+    font-weight: 700;
+    color: #007bff; /* Deep blue for elegance */
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    position: relative;
+    display: inline-block;
+    padding-bottom: 10px;
+    margin-top: 10px;
+}
+
+.section-header::after {
+    content: "";
+    display: block;
+    width: 60px; /* Adjust width */
+    height: 4px;
+    background: linear-gradient(to right, #007bff, #00246c); /* Blue gradient */
+    margin: 8px auto 0; /* Center underline */
+    border-radius: 2px;
+}
+
+.section-wrapper {
+    display: flex;
+    justify-content: center;
+    width: 100vw;
+    background: linear-gradient(120deg, #e6f7ff, #d9edf7);
+}
+
+.section-divider {
+    width: 90%; /* Adjust as needed */
+    height: 4px;
+    background: linear-gradient(to right, #b0d6ff, #00246c);
+    border-radius: 50%;
+}
+
+/* Hide Scrollbar */
+body::-webkit-scrollbar {
+    display: none;
+}
+
+body {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+/* Background Colors for Sections */
+.home {
+    background-color: #f0f8ff;
+}
+
+.resume {
+    background-color: #e6f7ff;
+}
+
+.about {
+    background-color: #d9edf7;
+    padding-top: 50px;
+}
+
+.logout {
+    background-color: #cce5ff;
+    min-height: 100%;
+    padding-top: 10px;
+}
+
+/* Animated Paragraph */
+.resume p {
+    font-size: 1.1rem; /* Reduced from 1.3rem */
+    font-weight: 500;
+    color: #007bff;
+    max-width: 50%;
+    line-height: 1.6;
+    text-align: center;
+    padding: 10px 20px;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    white-space: nowrap;
+    border-right: 2px solid transparent;
+    animation: typing 3s steps(50, end) forwards, blinkCursor 0.8s infinite;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 35%;
+    width: 100%;
+    padding: 50px;
+    background-color: #007bff;
+}
+
+.contact-details {
+    text-align: left;
+    max-width: 50%;
+    gap: 10px;
+}
+
+.contact-details h2 {
+    font-size: 1.8rem;
+    color: #ffffff;
+    margin-bottom: 10px;
+}
+
+.contact-details p {
+    font-size: 1.1rem;
+    color: #ffffff;
+    margin: 5px 0;
+}
+
+.contact-details a {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.contact-details a:hover {
+    text-decoration: underline;
+}
+
+
+#copyright{
+    color: #ffff;
+    align-self:flex-end
+}
+/* Typing Effect */
+@keyframes typing {
+    from {
+        width: 0;
+    }
+    to {
+        width: 70%;
+    }
+}
+
+/* Cursor Blinking Effect */
+@keyframes blinkCursor {
+    50% {
+        border-color: #0056b3;
+    }
+}

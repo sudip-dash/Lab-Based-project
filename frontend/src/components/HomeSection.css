@@ -1,0 +1,98 @@
+.homesection {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100vw; /* Full width */
+    height: 100vh; /* Full height */
+    padding: 50px;
+    box-sizing: border-box;
+    gap: 40px;
+}
+
+.image-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    padding: 30px;
+}
+
+.image-container img {
+    max-width: 65%;
+    height: auto;
+    border-radius: 15px;
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.text-container {
+    flex: 1;
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    line-height: 1.6;
+    padding: 20px;
+    max-width: 900px;
+    text-align: left;
+    position: relative;
+}
+
+.divider {
+    width: 4px;
+    height: 85%;
+    background: linear-gradient(to bottom, #b0d6ff, #00246c); /* Gradient blue */
+    clip-path: polygon(50% 0%, 100% 10%, 100% 90%, 50% 100%, 0% 90%, 0% 10%); /* Sharper ends */
+}
+
+/* Text animation */
+.text-container p {
+    display: inline-block;
+    white-space: pre-wrap;
+    overflow: hidden;
+    border-right: 3px solid transparent;
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    background: linear-gradient(90deg, #007bff, #0056b3);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: blink 0.7s infinite;
+}
+
+/* Blinking cursor effect */
+@keyframes blink {
+    50% {
+        border-right: 3px solid #007bff;
+    }
+}
+
+/* Glow effect after typing completes */
+.glow {
+    animation: glowText 1.5s infinite alternate;
+}
+
+@keyframes glowText {
+    from {
+        text-shadow: 0px 0px 5px #007bff, 0px 0px 10px #0056b3;
+    }
+    to {
+        text-shadow: 0px 0px 10px #007bff, 0px 0px 20px #0056b3;
+    }
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .homesection {
+        flex-direction: column;
+        text-align: center;
+        height: auto;
+        padding: 30px;
+    }
+
+    .image-container img {
+        max-width: 100%;
+    }
+
+    .text-container {
+        font-size: 20px;
+        max-width: 90%;
+        text-align: center;
+    }
+}

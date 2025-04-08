@@ -1,0 +1,57 @@
+.about-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 60px;
+    margin: 30px 0px;
+    flex-wrap: wrap;
+}
+
+.about-box {
+    width: 350px;
+    height: 350px;
+    background: white;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    transition: all 0.3s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.about-box:hover {
+    background: #007bff;
+    color: white;
+    transform: scale(1.1);
+}
+
+.about-header {
+    display: flex;
+    align-items: center; /* Align icon and title on the same level */
+    gap: 30px; /* Space between icon and title */
+    justify-content: center; /* Center them horizontally */
+}
+
+.about-icon {
+    font-size: 50px;
+    color: #007bff;
+}
+
+.about-box:hover .about-icon {
+    color: white;
+}
+
+.about-box h2 {
+    font-size: 24px;
+    margin: 0; /* Remove extra margin */
+    margin-bottom: 10px;
+}
+
+.about-box p {
+    font-size: 14px;
+    text-align: center;
+    margin-top: 10px;
+}
