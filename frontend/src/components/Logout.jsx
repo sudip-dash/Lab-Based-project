@@ -19,6 +19,7 @@ const Logout = () => {
 
       console.log(response.data);
       localStorage.removeItem("accessToken");
+      localStorage.removeItem('currentlyLoggedIn')
       navigate("/login");
     } catch (error) {
       console.error("Logout failed", error);

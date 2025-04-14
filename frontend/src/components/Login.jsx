@@ -25,6 +25,7 @@ const Login = () => {
 
       if (response.status === 200) {
         localStorage.setItem("accessToken", response.data.accessToken);
+        localStorage.setItem("currentlyLoggedIn", true);
         navigate("/home");
       } else {
         alert(response.data.message); // Access message properly
