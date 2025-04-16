@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
+import PasswordInput from "./PasswordInput.jsx";
 const Login = () => {
   const [formData, setFormData] = useState({ email: "", password: "" });
   const navigate = useNavigate();
@@ -41,48 +42,54 @@ const Login = () => {
   };
 
   return (
-    <>
-      <form onSubmit={handleSubmit}>
+    <div className="flex flex-col items-center justify-center min-h-screen bg-blue-50">
+      <form
+        className="flex flex-col items-center bg-white p-6 rounded-lg shadow-md"
+        onSubmit={handleSubmit}
+      >
         <input
           type="email"
           name="email"
           placeholder="Email"
           onChange={handleChange}
-          className="border-black p-2 m-2 rounded-lg"
+          className="border border-black p-2 m-2 rounded-lg w-72"
           required
         />
-        <input
-          type="password"
+        <PasswordInput
           name="password"
           placeholder="Password"
           onChange={handleChange}
-          className="border-black p-2 m-2 rounded-lg"
           required
         />
         <button
-          className="border-black p-2 m-2 bg-blue-600 rounded-2xl text-white"
+          className="border border-black p-2 m-2 bg-blue-600 rounded-2xl text-white w-72"
           type="submit"
         >
           Login
         </button>
       </form>
-      <Link
-        to="/"
-        className="text-blue-500 hover:text-amber-800 active:text-red-600"
-      >
-        Don't have an account ? Signup
-      </Link>
 
-      {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
+      {errorMessage && (
+        <p className="text-red-600 font-medium mt-2 text-center w-72">
+          {errorMessage}
+        </p>
+      )}
 
-      <br />
-      <Link
-        to="/forgot-password"
-        className="text-blue-500 hover:text-amber-800 active:text-red-600"
-      >
-        Don't remember your password ? Reset
-      </Link>
-    </>
+      <div className="mt-4 flex flex-col items-center gap-1">
+        <Link
+          to="/"
+          className="text-blue-500 hover:text-amber-800 active:text-red-600"
+        >
+          Don't have an account? Signup
+        </Link>
+        <Link
+          to="/forgot-password"
+          className="text-blue-500 hover:text-amber-800 active:text-red-600"
+        >
+          Don't remember your password? Reset
+        </Link>
+      </div>
+    </div>
   );
 };
 

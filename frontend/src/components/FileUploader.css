@@ -30,6 +30,7 @@ body {
   position: relative;
   transition: transform 0.5s ease-in-out, background 0.3s;
   box-shadow: 0 5px 15px rgba(0, 0, 255, 0.1);
+  overflow-x: auto;
 }
 
 .upload-box:hover {
@@ -163,6 +164,21 @@ body {
   border: 0.0625rem solid #ccc; /* 1px => 0.0625rem */
   margin-top: 0.25rem; /* 4px => 0.25rem */
 }
+
+
+
+.close-error {
+  position: absolute;
+  top: 6px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 18px;
+  color: #721c24;
+  cursor: pointer;
+  line-height: 1;
+}
+
 
 /* Shake Animation */
 @keyframes shake {

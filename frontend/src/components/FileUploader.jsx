@@ -10,6 +10,7 @@ const FileUploader = () => {
   const [stepsVisible, setStepsVisible] = useState(false);
   const [stepIndex, setStepIndex] = useState(0);
   const [role, setRole] = useState("");
+  const [error, setError] = useState(""); // ✅ NEW
 
   const steps = [
     "Accessing the document...",
@@ -20,6 +21,7 @@ const FileUploader = () => {
   const handleFileChange = (e) => {
     setFile(e.target.files[0]);
     setUploaded(false);
+    setError(""); // 🔄 UPDATED: clear error on new file selection
   };
 
   const handleUpload = async () => {
@@ -31,9 +33,15 @@ const FileUploader = () => {
       return;
     }
 
+    if (!role.trim()) {
+      setError("Please enter your desired role before uploading."); // ✅ NEW: role validation
+      return;
+    }
+
     setUploading(true);
     setStepsVisible(true);
     setStepIndex(0);
+    setError(""); // ✅ NEW: clear any previous error
 
     // Simulate step completion
     let interval = setInterval(() => {
@@ -59,7 +67,7 @@ const FileUploader = () => {
       });
     } catch (error) {
       console.error("Upload failed:", error);
-      alert("Failed to upload file.");
+      setError("Upload failed. Please try again."); // ✅ NEW: generic error fallback
       setUploading(false);
       setUploaded(false);
       setStepsVisible(false);
@@ -72,7 +80,8 @@ const FileUploader = () => {
     setUploaded(false);
     setStepsVisible(false);
     setStepIndex(0);
-    setRole('')
+    setRole("");
+    setError(""); // ✅ NEW: reset error on reset
   };
 
   return (
@@ -88,7 +97,9 @@ const FileUploader = () => {
           className="role-input"
         />
       </div>
-      {uploaded && (
+
+      {/* 🔁 MODIFIED: show only if role and upload are done */}
+      {uploaded && role && (
         <div className="uploaded-role">
           Role submitted: <strong>{role}</strong>
         </div>
@@ -120,17 +131,31 @@ const FileUploader = () => {
         {uploaded && <div className="success">Uploaded!</div>}
       </div>
 
+      {/* 🔁 MODIFIED: show Upload button always unless uploaded */}
       {!uploaded && (
-        <button
-          className="upload-btn"
-          onClick={handleUpload}
-          disabled={uploading}
-        >
-          {uploading ? "Uploading..." : "Upload"}
-        </button>
+        <>
+          <button
+            className="upload-btn"
+            onClick={handleUpload}
+            disabled={uploading}
+          >
+            {uploading ? "Uploading..." : "Upload"}
+          </button>
+
+          {/* ✅ NEW: Show error below Upload button */}
+          {error && (
+            <div className="text-red-600 font-semibold mt-2">
+              <span>{error}</span>
+              <button className="close-error" onClick={() => setError("")}>
+                ×
+              </button>
+            </div>
+          )}
+        </>
       )}
 
-      {uploaded && (
+      {/* 🔁 MODIFIED: Show "Upload Another File" only if upload succeeded and role provided */}
+      {uploaded && role && (
         <button className="upload-btn reset-btn" onClick={resetUpload}>
           Upload Another File
         </button>

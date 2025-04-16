@@ -1,5 +1,6 @@
 import fs from "fs";
 import path from "path";
+import {ApiError} from '../utilities/ApiError.js'
 
 
 export const uploadFile = async (req, res) => {
@@ -7,10 +8,13 @@ export const uploadFile = async (req, res) => {
 
   const inputPath = req.file.path;
   const ext = path.extname(req.file.originalname).toLowerCase();
-  const role = req.role; // not used as do not know where to send 
-  
-  
-  const outputPath = path.join("public", "temp", req.file.originalname);
+  const role = req.body.role; // not used as do not know where to send 
+
+  if (!role) {
+    return res.status(400).json(new ApiError(400,'Need to have the role'))
+  }
+
+  const outputPath = path.join("public", "temp",  `Resume${ext}`);
 
   try {
     if (ext === ".pdf" || ext === ".docx") {
