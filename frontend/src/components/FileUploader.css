@@ -1,0 +1,226 @@
+body {
+  background-color: #F7F9FB;
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #202124;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 65vh;
+  gap: 30px;
+  transition: all 0.5s ease-in-out;
+}
+
+.upload-box {
+  width: 350px;
+  height: 350px;
+  border: 3px dashed #1A2A49;
+  background-color: #FFFFFF;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  border-radius: 15px;
+  position: relative;
+  transition: transform 0.5s ease-in-out, background 0.3s;
+  box-shadow: 0 5px 15px rgba(26, 42, 73, 0.1);
+}
+
+.upload-box:hover {
+  background-color: #F0F4F8;
+}
+
+.upload-box.move-left {
+  transform: translateX(-50px);
+}
+
+
+
+#file-input {
+  display: none;
+}
+
+.file-label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: bold;
+  color: #1A2A49;
+  transition: transform 0.2s;
+}
+
+.file-label:hover {
+  transform: scale(1.05);
+}
+
+.plus {
+  font-size: 90px;
+  font-weight: bold;
+  color: #1A2A49;
+  margin-bottom: 10px;
+}
+
+.file-icon {
+  font-size: 50px;
+  margin-bottom: 5px;
+  color: #1A2A49;
+}
+
+.file-name {
+  font-size: 16px;
+  color: #202124;
+  font-weight: bold;
+  margin-top: 5px;
+}
+
+.upload-btn {
+  margin-top: 10px;
+  padding: 12px 25px;
+  font-size: 18px;
+  font-weight: bold;
+  border: none;
+  background: linear-gradient(135deg, #1A2A49, #007bff);
+  color: white;
+  cursor: pointer;
+  border-radius: 50px;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0px 4px 10px rgba(26, 42, 73, 0.3);
+}
+
+.upload-btn:hover {
+  background: linear-gradient(135deg, #2C3E65, #3D517D);
+  transform: scale(1.05);
+  box-shadow: 0px 6px 15px rgba(26, 42, 73, 0.4);
+}
+
+.upload-btn:disabled {
+  background: #B0BEC5;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.reset-btn {
+  background: linear-gradient(135deg, #00C48C, #00A77F);
+}
+
+.reset-btn:hover {
+  background: linear-gradient(135deg, #00A77F, #00896C);
+}
+
+.upload-steps {
+  font-size: 18px;
+  color: #202124;
+  display: none;
+  flex-direction: column;
+  gap: 10px;
+  transition: opacity 0.5s ease-in-out;
+  text-align: left;
+}
+
+.upload-steps.visible {
+  display: flex;
+}
+
+.completed {
+  color: #00C48C;
+  font-weight: bold;
+}
+
+.success {
+  font-size: 24px;
+  font-weight: bold;
+  color: #00C48C;
+  margin-top: 10px;
+}
+
+.role-input-container {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: 'Poppins', sans-serif;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.role-input-container.move-left {
+  transform: translateX(-50px);
+  transition: transform 0.5s ease-in-out;
+}
+
+
+.role-input-container label {
+  font-size: 1.2rem;
+  font-weight: 700;
+  background: linear-gradient(90deg, #1A2A49, #0077fb);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-align: center;
+  margin-bottom: 10px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease;
+}
+
+.role-input-container label:hover {
+  transform: scale(1.05);
+}
+
+.role-input {
+  padding: 12px 20px;
+  font-size: 1rem;
+  font-weight: 600;
+  background: linear-gradient(135deg, #f0f4f8, #e0e8f9);
+  border: 2px solid #B0BEC5;
+  border-radius: 30px;
+  width: 280px;
+  color: #1A2A49;
+  box-shadow: 0 2px 8px rgba(26, 42, 73, 0.1);
+  transition: all 0.3s ease;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg fill='%231A2A49' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  background-size: 16px;
+}
+
+.role-input:focus {
+  border-color: #007bff;
+  outline: none;
+  box-shadow: 0 0 8px rgba(0, 123, 255, 0.4);
+}
+
+.role-input option {
+  background-color: #ffffff;
+  color: #1A2A49;
+  padding: 10px;
+  font-weight: 500;
+}
+
+.role-input option:hover,
+.role-input option:focus {
+  background-color: #e8f0fe;
+  color: #007bff;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25%, 75% { transform: translateX(-5px); }
+  50% { transform: translateX(5px); }
+}
+
+.shake {
+  animation: shake 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
